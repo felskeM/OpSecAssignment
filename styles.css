@@ -1,0 +1,19 @@
+div.grid {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: 20px;
+  }
+  div.left {
+    grid-column: 1;
+  }
+  div.right {
+    grid-column: 2;
+  }
+  img {
+    width: auto; /* force image to scale with column */
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  }
