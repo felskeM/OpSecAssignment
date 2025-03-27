@@ -1,13 +1,16 @@
 # How to Set Up Mullvad VPN on Windows 11 for Maximum Anonymity and Privacy
 
-This guide will walk you through setting up Mullvad VPN on a Windows 11 machine with an emphasis on **maximum anonymity and privacy**. You will verify the VPN software using **PGP signatures**, create an anonymous account, **pay with cryptocurrency**, and configure the app securely.
+
+##### ***DISCLAIMER: images will be in Spanish because my computer is in Spanish and I'm not changing my language for an assignment***
+
+This guide will walk you through setting up Mullvad VPN on a Windows 11 machine with a very strong emphasis on **maximum anonymity and privacy**. You will verify the VPN software using **PGP signatures**, create an anonymous account, **pay with cryptocurrency**, and configure the app securely.
 
 ---
 
 <style>
 div.grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 60% 40%;
   gap: 20px;
 }
 div.left {
@@ -17,12 +20,15 @@ div.right {
   grid-column: 2;
 }
 img {
-  max-width: 100%;
+  width: 100%; /* force image to scale with column */
+  height: auto;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 4px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.1);
 }
 </style>
+
 
 <div class="grid">
 
@@ -44,21 +50,21 @@ During install, ensure **Kleopatra** is selected.
 
 ## Step 2: Download Mullvad Installer and Signature
 ```powershell
-Invoke-WebRequest -Uri "https://mullvad.net/download/app/latest/windows64/" -OutFile "MullvadVPN.exe"
-Invoke-WebRequest -Uri "https://mullvad.net/download/app/latest/windows64.sig" -OutFile "MullvadVPN.exe.sig"
+Invoke-WebRequest -Uri "https://mullvad.net/en/download/app/exe/latest" -OutFile "MullvadVPN.exe"
+Invoke-WebRequest -Uri "https://mullvad.net/en/download/app/exe/latest/signature" -OutFile "MullvadVPN.exe.sig"
 ```
 Use **Tor** or **Brave** browser for better anonymity when downloading.
 
 </div>
 <div class="right">
-<img src="images/mullvad-download.png" alt="Downloading Mullvad VPN">
+<img src="mullvad.png" alt="Downloading Mullvad VPN">
 </div>
 
 <div class="left">
 
 ## Step 3: Import Mullvad’s Public PGP Key
 ```powershell
-Invoke-WebRequest -Uri "https://mullvad.net/en/help/pgp-key/" -OutFile "mullvad.asc"
+Invoke-WebRequest -Uri "https://mullvad.net/media/mullvad-code-signing.asc" -OutFile "mullvad.asc"
 gpg --import mullvad.asc
 gpg --fingerprint
 ```
@@ -66,7 +72,7 @@ Verify the fingerprint against Mullvad’s official key.
 
 </div>
 <div class="right">
-<img src="images/kleopatra-import.png" alt="Kleopatra key import">
+<img src="mullvadgpg.png" alt="Kleopatra key import">
 </div>
 
 <div class="left">
@@ -79,7 +85,7 @@ Ensure the signature is **valid** and matches Mullvad's key.
 
 </div>
 <div class="right">
-<img src="images/pgp-verify.png" alt="PGP verification success">
+<img src="signatureconfirmed.png" alt="PGP verification success">
 </div>
 
 <div class="left">
@@ -91,7 +97,7 @@ Ensure the signature is **valid** and matches Mullvad's key.
 
 </div>
 <div class="right">
-<img src="images/mullvad-account.png" alt="Mullvad anonymous account creation">
+<img src="mullvad.png" alt="Mullvad anonymous account creation">
 </div>
 
 <div class="left">
@@ -104,7 +110,7 @@ Ensure the signature is **valid** and matches Mullvad's key.
 
 </div>
 <div class="right">
-<img src="images/monero-payment.png" alt="Feather wallet payment screen">
+<img src="featherwallet.png" alt="Feather wallet payment screen">
 </div>
 
 <div class="left">
@@ -117,7 +123,7 @@ Follow the prompts to install.
 
 </div>
 <div class="right">
-<img src="images/mullvad-installer.png" alt="Mullvad installation wizard">
+<img src="mullvadlooks.png" alt="Mullvad installation wizard">
 </div>
 
 <div class="left">
@@ -132,7 +138,7 @@ Follow the prompts to install.
 
 </div>
 <div class="right">
-<img src="images/mullvad-settings.png" alt="Mullvad VPN privacy settings">
+<img src="mullvadconfigs.png" alt="Mullvad VPN privacy settings">
 </div>
 
 <div class="left">
@@ -148,7 +154,7 @@ Follow the prompts to install.
 
 </div>
 <div class="right">
-<img src="images/ip-leak-test.png" alt="IP leak test results">
+<img src="ipleak.png" alt="IP leak test results">
 </div>
 
 <div class="left">
@@ -161,7 +167,7 @@ Follow the prompts to install.
 
 </div>
 <div class="right">
-<img src="images/tor-browser.png" alt="Tor browser in use">
+<img src="noscript.png" alt="Tor browser in use">
 </div>
 
 </div>
