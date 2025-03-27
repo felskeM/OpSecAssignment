@@ -9,19 +9,18 @@ This guide will walk you through setting up Mullvad VPN on a Windows 11 machine 
 
 <style>
 div.grid {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 60% 40%;
   gap: 20px;
-  align-items: flex-start;
 }
 div.left {
-  width: 60%;
+  grid-column: 1;
 }
 div.right {
-  width: 40%;
+  grid-column: 2;
 }
 img {
-  max-width: 100%;
+  width: auto; /* force image to scale with column */
   height: auto;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -29,7 +28,6 @@ img {
   box-shadow: 0 0 4px rgba(0,0,0,0.1);
 }
 </style>
-
 
 
 <div class="grid">
