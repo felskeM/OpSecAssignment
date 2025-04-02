@@ -6,7 +6,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <link rel="stylesheet" href="styles.css">
-  <title>Mullvad</title>
+  <title>Mullvad Tutorial</title>
 </head>
 
 <body>
@@ -27,57 +27,57 @@
   <hr />
   <div class="grid">
     <section id="step-1-install-gpg-gpg4win" class="left">
-      <h2>Step 1: Install GPG (Gpg4win)</h2>
-      <div class="sourceCode" id="cb1">
-        <pre
-          class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Invoke-WebRequest</span> <span class="op">-</span>Uri <span class="st">&quot;https://files.gpg4win.org/gpg4win-4.2.0.exe&quot;</span> <span class="op">-</span>OutFile <span class="st">&quot;gpg4win.exe&quot;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Start-Process</span> <span class="op">.</span>\gpg4win<span class="op">.</span><span class="fu">exe</span></span></code></pre>
+      <h2>Step 1: Install GPG (Gpg4win) for Windows users</h2>
+      <div class="code-container">
+        <button class="copy-btn">Copy</button>
+        <pre><code>Invoke-WebRequest -Uri "https://files.gpg4win.org/gpg4win-4.2.0.exe" -OutFile "gpg4win.exe"
+  Start-Process .\gpg4win.exe</code></pre>
       </div>
-      <p>During install, ensure <strong>Kleopatra</strong> is selected.</p>
+      <p>During install, ensure <strong>Kleopatra</strong> is selected...</p>
     </section>
     <div class="right">
-      <p><img role="img" aria-label="Gpg4win installer screenshot" src="OpSecAssignment/images/gpginstall.png"
+      <p><img role="img" aria-label="Gpg4win installer screenshot" src="images/gpginstall.png"
           alt="Gpg4win installer screenshot"></p>
     </div>
     <section id="step-2-download-mullvad-installer-and-signature" class="left">
       <h2>Step 2: Download Mullvad Installer and Signature</h2>
-      <div class="sourceCode" id="cb2">
-        <pre
-          class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Invoke-WebRequest</span> <span class="op">-</span>Uri <span class="st">&quot;https://mullvad.net/en/download/app/exe/latest&quot;</span> <span class="op">-</span>OutFile <span class="st">&quot;MullvadVPN.exe&quot;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Invoke-WebRequest</span> <span class="op">-</span>Uri <span class="st">&quot;https://mullvad.net/en/download/app/exe/latest/signature&quot;</span> <span class="op">-</span>OutFile <span class="st">&quot;MullvadVPN.exe.sig&quot;</span></span></code></pre>
+      <div class="code-container">
+        <button class="copy-btn">Copy</button>
+        <pre><code>Invoke-WebRequest -Uri "https://mullvad.net/en/download/app/exe/latest" -OutFile "MullvadVPN.exe"
+  Invoke-WebRequest -Uri "https://mullvad.net/en/download/app/exe/latest/signature" -OutFile "MullvadVPN.exe.sig"</code></pre>
       </div>
       <p>Use <strong>Tor</strong> or <strong>Brave</strong> browser for better
         anonymity when downloading.</p>
     </section>
     <div class="right">
-      <p><img role="img" aria-label="Downloading Mullvad VPN" src="OpSecAssignment/images/mullvad.png"
+      <p><img role="img" aria-label="Downloading Mullvad VPN" src="images/mullvad.png"
           alt="Downloading Mullvad VPN"></p>
     </div>
     <section id="step-3-import-mullvads-public-pgp-key" class="left">
       <h2>Step 3: Import Mullvad’s Public PGP Key</h2>
-      <div class="sourceCode" id="cb3">
-        <pre
-          class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Invoke-WebRequest</span> <span class="op">-</span>Uri <span class="st">&quot;https://mullvad.net/media/mullvad-code-signing.asc&quot;</span> <span class="op">-</span>OutFile <span class="st">&quot;mullvad.asc&quot;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gpg <span class="op">--</span>import mullvad<span class="op">.</span><span class="fu">asc</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gpg <span class="op">--</span>fingerprint</span></code></pre>
+      <div class="code-container">
+        <button class="copy-btn">Copy</button>
+        <pre><code>Invoke-WebRequest -Uri "https://mullvad.net/media/mullvad-code-signing.asc" -OutFile "mullvad.asc"
+  gpg --import mullvad.asc
+  gpg --fingerprint</code></pre>
       </div>
       <p>Verify the fingerprint against Mullvad’s official key.</p>
     </section>
     <div class="right">
-      <p><img role="img" aria-label="Kleopatra key import" src="OpSecAssignment/images/mullvadgpg.png"
+      <p><img role="img" aria-label="Kleopatra key import" src="images/mullvadgpg.png"
           alt="Kleopatra key import"></p>
     </div>
     <section id="step-4-verify-the-installer" class="left">
       <h2>Step 4: Verify the Installer</h2>
-      <div class="sourceCode" id="cb4">
-        <pre
-          class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gpg <span class="op">--</span>verify MullvadVPN<span class="op">.</span><span class="fu">exe</span><span class="op">.</span><span class="fu">sig</span> MullvadVPN<span class="op">.</span><span class="fu">exe</span></span></code></pre>
+      <div class="code-container">
+        <button class="copy-btn">Copy</button>
+        <pre><code>gpg --verify MullvadVPN.exe.sig MullvadVPN.exe</code></pre>
       </div>
       <p>Ensure the signature is <strong>valid</strong> and matches Mullvad’s
         key.</p>
     </section>
     <div class="right">
-      <p><img role="img" aria-label="PGP verification success" src="OpSecAssignment/images/signatureconfirmed.png"
+      <p><img role="img" aria-label="PGP verification success" src="images/signatureconfirmed.png"
           alt="PGP verification success"></p>
     </div>
     <section id="step-5-create-an-anonymous-mullvad-account" class="left">
@@ -90,7 +90,7 @@
       </ol>
     </section>
     <div class="right">
-      <p><img role="img" aria-label="Mullvad anonymous account creation" src="OpSecAssignment/images/mullvad.png"
+      <p><img role="img" aria-label="Mullvad anonymous account creation" src="images/mullvad.png"
           alt="Mullvad anonymous account creation"></p>
     </div>
     <section id="step-6-pay-with-cryptocurrency-monero" class="left">
@@ -104,19 +104,19 @@
       </ul>
     </section>
     <div class="right">
-      <p><img role="img" aria-label="Feather wallet payment screen" src="OpSecAssignment/images/featherwallet.png"
+      <p><img role="img" aria-label="Feather wallet payment screen" src="images/featherwallet.png"
           alt="Feather wallet payment screen"></p>
     </div>
     <section id="step-7-install-mullvad-vpn" class="left">
       <h2>Step 7: Install Mullvad VPN</h2>
-      <div class="sourceCode" id="cb5">
-        <pre
-          class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Start-Process</span> <span class="op">.</span>\MullvadVPN<span class="op">.</span><span class="fu">exe</span></span></code></pre>
+      <div class="code-container">
+        <button class="copy-btn">Copy</button>
+        <pre><code>Start-Process .\MullvadVPN.exe</code></pre>
       </div>
       <p>Follow the prompts to install.</p>
     </section>
     <div class="right">
-      <p><img role="img" aria-label="Mullvad installation wizard" src="OpSecAssignment/images/mullvadlooks.png"
+      <p><img role="img" aria-label="Mullvad installation wizard" src="images/mullvadlooks.png"
           alt="Mullvad installation wizard"></p>
     </div>
     <section id="step-8-configure-mullvad-for-privacy" class="left">
@@ -134,7 +134,7 @@
       </ol>
     </section>
     <div class="right">
-      <p><img role="img" aria-label="Mullvad VPN privacy settings" src="OpSecAssignment/images/mullvadconfigs.png"
+      <p><img role="img" aria-label="Mullvad VPN privacy settings" src="images/mullvadconfigs.png"
           alt="Mullvad VPN privacy settings"></p>
     </div>
     <section id="step-9-test-for-ip-dns-and-webrtc-leaks" class="left">
@@ -156,7 +156,7 @@
       </ul>
     </section>
     <div class="right">
-      <p><img role="img" aria-label="IP leak test results" src="OpSecAssignment/images/ipleak.png" alt="IP leak test results">
+      <p><img role="img" aria-label="IP leak test results" src="images/ipleak.png" alt="IP leak test results">
       </p>
     </div>
     <section id="step-10-maintain-privacy-long-term" class="left">
@@ -169,7 +169,7 @@
       </ul>
     </section>
     <div class="right">
-      <p><img role="img" aria-label="Tor browser in use" src="OpSecAssignment/images/noscript.png" alt="Tor browser in use">
+      <p><img role="img" aria-label="Tor browser in use" src="images/noscript.png" alt="Tor browser in use">
       </p>
     </div>
   </div>
@@ -193,6 +193,7 @@
     A NOTE FOR PROFESSOR, IT WAS VERY DIFFICULT TO TURN THIS CODE INTO A
     WORD DOC AND PDF SO IT MAY NOT TURN OUT AS GREAT UNLESS YOU USE A CODE
     EDITOR TO VIEW THE OUTPUT</h3>
+    <script src="script.js"></script>
 </body>
 
 </html>
