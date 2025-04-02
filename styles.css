@@ -1,6 +1,6 @@
 html {
   color: #1a1a1a;
-  background-color: #beef00;
+  background-color: #7091e6;
 }
 
 body {
@@ -483,6 +483,7 @@ div.grid {
 }
 
 div.left {
+  margin-top: -1rem;
   grid-column: 1;
 }
 
@@ -491,9 +492,9 @@ div.right {
 }
 
 img {
-  width: auto;
+  width: 50%;
   /* force image to scale with column */
-  height: auto;
+  height: 50%;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 4px;
