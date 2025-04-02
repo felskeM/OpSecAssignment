@@ -43,7 +43,7 @@ During install, ensure **Kleopatra** is selected.
 
 </div>
 <div class="right">
-<img src="gpginstall.png" alt="Gpg4win installer screenshot">
+<img src="images/gpginstall.png" alt="Gpg4win installer screenshot">
 </div>
 
 <div class="left">
@@ -57,7 +57,7 @@ Use **Tor** or **Brave** browser for better anonymity when downloading.
 
 </div>
 <div class="right">
-<img src="mullvad.png" alt="Downloading Mullvad VPN">
+<img src="images/mullvad.png" alt="Downloading Mullvad VPN">
 </div>
 
 <div class="left">
@@ -72,7 +72,7 @@ Verify the fingerprint against Mullvad’s official key.
 
 </div>
 <div class="right">
-<img src="mullvadgpg.png" alt="Kleopatra key import">
+<img src="images/mullvadgpg.png" alt="Kleopatra key import">
 </div>
 
 <div class="left">
@@ -85,7 +85,7 @@ Ensure the signature is **valid** and matches Mullvad's key.
 
 </div>
 <div class="right">
-<img src="signatureconfirmed.png" alt="PGP verification success">
+<img src="images/signatureconfirmed.png" alt="PGP verification success">
 </div>
 
 <div class="left">
@@ -97,7 +97,7 @@ Ensure the signature is **valid** and matches Mullvad's key.
 
 </div>
 <div class="right">
-<img src="mullvad.png" alt="Mullvad anonymous account creation">
+<img src="images/mullvad.png" alt="Mullvad anonymous account creation">
 </div>
 
 <div class="left">
@@ -110,7 +110,7 @@ Ensure the signature is **valid** and matches Mullvad's key.
 
 </div>
 <div class="right">
-<img src="featherwallet.png" alt="Feather wallet payment screen">
+<img src="images/featherwallet.png" alt="Feather wallet payment screen">
 </div>
 
 <div class="left">
@@ -123,7 +123,7 @@ Follow the prompts to install.
 
 </div>
 <div class="right">
-<img src="mullvadlooks.png" alt="Mullvad installation wizard">
+<img src="images/mullvadlooks.png" alt="Mullvad installation wizard">
 </div>
 
 <div class="left">
@@ -138,7 +138,7 @@ Follow the prompts to install.
 
 </div>
 <div class="right">
-<img src="mullvadconfigs.png" alt="Mullvad VPN privacy settings">
+<img src="images/mullvadconfigs.png" alt="Mullvad VPN privacy settings">
 </div>
 
 <div class="left">
@@ -154,7 +154,7 @@ Follow the prompts to install.
 
 </div>
 <div class="right">
-<img src="ipleak.png" alt="IP leak test results">
+<img src="images/ipleak.png" alt="IP leak test results">
 </div>
 
 <div class="left">
@@ -167,7 +167,7 @@ Follow the prompts to install.
 
 </div>
 <div class="right">
-<img src="noscript.png" alt="Tor browser in use">
+<img src="images/noscript.png" alt="Tor browser in use">
 </div>
 
 </div>
