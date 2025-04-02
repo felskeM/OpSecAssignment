@@ -1,406 +1,676 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>mullvad</title>
+  <link rel="stylesheet" href="styles.css">
+  <title>Mullvad</title>
   <style>
-html {
-color: #1a1a1a;
-background-color: #fdfdfd;
-}
-body {
-margin: 0 auto;
-max-width: 36em;
-padding-left: 50px;
-font-family: sans-serif;
-padding-right: 50px;
-padding-top: 50px;
-padding-bottom: 50px;
-hyphens: auto;
-overflow-wrap: break-word;
-text-rendering: optimizeLegibility;
-font-kerning: normal;
-}
-@media (max-width: 600px) {
-body {
-font-size: 0.9em;
-padding: 12px;
-}
-h1 {
-font-size: 1.8em;
-}
-}
-@media print {
-html {
-background-color: white;
-}
-body {
-background-color: transparent;
-color: black;
-font-size: 12pt;
-}
-p, h2, h3 {
-orphans: 3;
-widows: 3;
-}
-h2, h3, h4 {
-page-break-after: avoid;
-}
-}
-p {
-margin: 1em 0;
-}
-a {
-color: #1a1a1a;
-}
-a:visited {
-color: #1a1a1a;
-}
-img {
-max-width: 100%;
-}
-svg {
-height: auto;
-max-width: 100%;
-}
-h1, h2, h3, h4, h5, h6 {
-margin-top: 1.4em;
-}
-h5, h6 {
-font-size: 1em;
-font-style: italic;
-}
-h6 {
-font-weight: normal;
-}
-ol, ul {
-padding-left: 1.7em;
-margin-top: 1em;
-}
-li > ol, li > ul {
-margin-top: 0;
-}
-blockquote {
-margin: 1em 0 1em 1.7em;
-padding-left: 1em;
-border-left: 2px solid #e6e6e6;
-color: #606060;
-}
-code {
-font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
-font-size: 85%;
-margin: 0;
-hyphens: manual;
-}
-pre {
-margin: 1em 0;
-overflow: auto;
-}
-pre code {
-padding: 0;
-overflow: visible;
-overflow-wrap: normal;
-}
-.sourceCode {
-background-color: transparent;
-overflow: visible;
-}
-hr {
-border: none;
-border-top: 1px solid #1a1a1a;
-height: 1px;
-margin: 1em 0;
-}
-table {
-margin: 1em 0;
-border-collapse: collapse;
-width: 100%;
-overflow-x: auto;
-display: block;
-font-variant-numeric: lining-nums tabular-nums;
-}
-table caption {
-margin-bottom: 0.75em;
-}
-tbody {
-margin-top: 0.5em;
-border-top: 1px solid #1a1a1a;
-border-bottom: 1px solid #1a1a1a;
-}
-th {
-border-top: 1px solid #1a1a1a;
-padding: 0.25em 0.5em 0.25em 0.5em;
-}
-td {
-padding: 0.125em 0.5em 0.25em 0.5em;
-}
-header {
-margin-bottom: 4em;
-text-align: center;
-}
-#TOC li {
-list-style: none;
-}
-#TOC ul {
-padding-left: 1.3em;
-}
-#TOC > ul {
-padding-left: 0;
-}
-#TOC a:not(:hover) {
-text-decoration: none;
-}
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
 
-ul.task-list[class]{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-font-size: inherit;
-width: 0.8em;
-margin: 0 0.8em 0.2em -1.6em;
-vertical-align: middle;
-}
-.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      font-family: sans-serif;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
 
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-{ counter-reset: source-line 0; }
-pre.numberSource code > span
-{ position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-{ content: counter(source-line);
-position: relative; left: -1em; text-align: right; vertical-align: baseline;
-border: none; display: inline-block;
--webkit-touch-callout: none; -webkit-user-select: none;
--khtml-user-select: none; -moz-user-select: none;
--ms-user-select: none; user-select: none;
-padding: 0 4px; width: 4em;
-color: #aaaaaa;
-}
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
-div.sourceCode
-{ }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } 
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
-code span.at { color: #7d9029; } 
-code span.bn { color: #40a070; } 
-code span.bu { color: #008000; } 
-code span.cf { color: #007020; font-weight: bold; } 
-code span.ch { color: #4070a0; } 
-code span.cn { color: #880000; } 
-code span.co { color: #60a0b0; font-style: italic; } 
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
-code span.do { color: #ba2121; font-style: italic; } 
-code span.dt { color: #902000; } 
-code span.dv { color: #40a070; } 
-code span.er { color: #ff0000; font-weight: bold; } 
-code span.ex { } 
-code span.fl { color: #40a070; } 
-code span.fu { color: #06287e; } 
-code span.im { color: #008000; font-weight: bold; } 
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
-code span.kw { color: #007020; font-weight: bold; } 
-code span.op { color: #666666; } 
-code span.ot { color: #007020; } 
-code span.pp { color: #bc7a00; } 
-code span.sc { color: #4070a0; } 
-code span.ss { color: #bb6688; } 
-code span.st { color: #4070a0; } 
-code span.va { color: #19177c; } 
-code span.vs { color: #4070a0; } 
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
-</style>
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+
+    @media print {
+      html {
+        background-color: white;
+      }
+
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+
+      p,
+      h2,
+      h3 {
+        orphans: 3;
+        widows: 3;
+      }
+
+      h2,
+      h3,
+      h4 {
+        page-break-after: avoid;
+      }
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    a {
+      color: #1a1a1a;
+    }
+
+    a:visited {
+      color: #1a1a1a;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 1.4em;
+    }
+
+    h5,
+    h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+
+    h6 {
+      font-weight: normal;
+    }
+
+    ol,
+    ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+
+    li>ol,
+    li>ul {
+      margin-top: 0;
+    }
+
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+
+    .sourceCode {
+      background-color: transparent;
+      overflow: visible;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+
+    table caption {
+      margin-bottom: 0.75em;
+    }
+
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+
+    #TOC li {
+      list-style: none;
+    }
+
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+
+    #TOC>ul {
+      padding-left: 0;
+    }
+
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+
+    code {
+      white-space: pre-wrap;
+    }
+
+    span.smallcaps {
+      font-variant: small-caps;
+    }
+
+    div.columns {
+      display: flex;
+      gap: min(4vw, 1.5em);
+    }
+
+    div.column {
+      flex: auto;
+      overflow-x: auto;
+    }
+
+    div.hanging-indent {
+      margin-left: 1.5em;
+      text-indent: -1.5em;
+    }
+
+    ul.task-list[class] {
+      list-style: none;
+    }
+
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+
+    .display.math {
+      display: block;
+      text-align: center;
+      margin: 0.5rem auto;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    pre>code.sourceCode {
+      white-space: pre;
+      position: relative;
+    }
+
+    pre>code.sourceCode>span {
+      display: inline-block;
+      line-height: 1.25;
+    }
+
+    pre>code.sourceCode>span:empty {
+      height: 1.2em;
+    }
+
+    .sourceCode {
+      overflow: visible;
+    }
+
+    code.sourceCode>span {
+      color: inherit;
+      text-decoration: inherit;
+    }
+
+    div.sourceCode {
+      margin: 1em 0;
+    }
+
+    pre.sourceCode {
+      margin: 0;
+    }
+
+    @media screen {
+      div.sourceCode {
+        overflow: auto;
+      }
+    }
+
+    @media print {
+      pre>code.sourceCode {
+        white-space: pre-wrap;
+      }
+
+      pre>code.sourceCode>span {
+        text-indent: -5em;
+        padding-left: 5em;
+      }
+    }
+
+    pre.numberSource code {
+      counter-reset: source-line 0;
+    }
+
+    pre.numberSource code>span {
+      position: relative;
+      left: -4em;
+      counter-increment: source-line;
+    }
+
+    pre.numberSource code>span>a:first-child::before {
+      content: counter(source-line);
+      position: relative;
+      left: -1em;
+      text-align: right;
+      vertical-align: baseline;
+      border: none;
+      display: inline-block;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      padding: 0 4px;
+      width: 4em;
+      color: #aaaaaa;
+    }
+
+    pre.numberSource {
+      margin-left: 3em;
+      border-left: 1px solid #aaaaaa;
+      padding-left: 4px;
+    }
+
+    div.sourceCode {}
+
+    @media screen {
+      pre>code.sourceCode>span>a:first-child::before {
+        text-decoration: underline;
+      }
+    }
+
+    code span.al {
+      color: #ff0000;
+      font-weight: bold;
+    }
+
+    code span.an {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    code span.at {
+      color: #7d9029;
+    }
+
+    code span.bn {
+      color: #40a070;
+    }
+
+    code span.bu {
+      color: #008000;
+    }
+
+    code span.cf {
+      color: #007020;
+      font-weight: bold;
+    }
+
+    code span.ch {
+      color: #4070a0;
+    }
+
+    code span.cn {
+      color: #880000;
+    }
+
+    code span.co {
+      color: #60a0b0;
+      font-style: italic;
+    }
+
+    code span.cv {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    code span.do {
+      color: #ba2121;
+      font-style: italic;
+    }
+
+    code span.dt {
+      color: #902000;
+    }
+
+    code span.dv {
+      color: #40a070;
+    }
+
+    code span.er {
+      color: #ff0000;
+      font-weight: bold;
+    }
+
+    code span.ex {}
+
+    code span.fl {
+      color: #40a070;
+    }
+
+    code span.fu {
+      color: #06287e;
+    }
+
+    code span.im {
+      color: #008000;
+      font-weight: bold;
+    }
+
+    code span.in {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    code span.kw {
+      color: #007020;
+      font-weight: bold;
+    }
+
+    code span.op {
+      color: #666666;
+    }
+
+    code span.ot {
+      color: #007020;
+    }
+
+    code span.pp {
+      color: #bc7a00;
+    }
+
+    code span.sc {
+      color: #4070a0;
+    }
+
+    code span.ss {
+      color: #bb6688;
+    }
+
+    code span.st {
+      color: #4070a0;
+    }
+
+    code span.va {
+      color: #19177c;
+    }
+
+    code span.vs {
+      color: #4070a0;
+    }
+
+    code span.wa {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+  </style>
 </head>
+
 <body>
-<h1 id="how-to-set-up-mullvad-vpn-on-windows-11-for-maximum-anonymity-and-privacy">How
-to Set Up Mullvad VPN on Windows 11 for Maximum Anonymity and
-Privacy</h1>
-<h5 id="disclaimer-images-will-be-in-spanish-because-my-computer-is-in-spanish-and-im-not-changing-my-language-for-an-assignment"><strong><em>DISCLAIMER:
-images will be in Spanish because my computer is in Spanish and I’m not
-changing my language for an assignment</em></strong></h5>
-<p>This guide will walk you through setting up Mullvad VPN on a Windows
-11 machine with a very strong emphasis on <strong>maximum anonymity and
-privacy</strong>. You will verify the VPN software using <strong>PGP
-signatures</strong>, create an anonymous account, <strong>pay with
-cryptocurrency</strong>, and configure the app securely.</p>
-<hr />
-<style>
-div.grid {
-display: grid;
-grid-template-columns: 60% 40%;
-gap: 20px;
-}
-div.left {
-grid-column: 1;
-}
-div.right {
-grid-column: 2;
-}
-img {
-width: auto; 
-height: auto;
-border: 1px solid #ccc;
-border-radius: 4px;
-padding: 4px;
-box-shadow: 0 0 4px rgba(0,0,0,0.1);
-}
-</style>
-<div class="grid">
-<section id="step-1-install-gpg-gpg4win" class="left">
-<h2>Step 1: Install GPG (Gpg4win)</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Invoke-WebRequest</span> <span class="op">-</span>Uri <span class="st">&quot;https://files.gpg4win.org/gpg4win-4.2.0.exe&quot;</span> <span class="op">-</span>OutFile <span class="st">&quot;gpg4win.exe&quot;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Start-Process</span> <span class="op">.</span>\gpg4win<span class="op">.</span><span class="fu">exe</span></span></code></pre></div>
-<p>During install, ensure <strong>Kleopatra</strong> is selected.</p>
-</section>
-<div class="right">
-<p><img role="img" aria-label="Gpg4win installer screenshot" src="OpSecAssignment/gpginstall.png" alt="Gpg4win installer screenshot"></p>
-</div>
-<section id="step-2-download-mullvad-installer-and-signature" class="left">
-<h2>Step 2: Download Mullvad Installer and Signature</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Invoke-WebRequest</span> <span class="op">-</span>Uri <span class="st">&quot;https://mullvad.net/en/download/app/exe/latest&quot;</span> <span class="op">-</span>OutFile <span class="st">&quot;MullvadVPN.exe&quot;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Invoke-WebRequest</span> <span class="op">-</span>Uri <span class="st">&quot;https://mullvad.net/en/download/app/exe/latest/signature&quot;</span> <span class="op">-</span>OutFile <span class="st">&quot;MullvadVPN.exe.sig&quot;</span></span></code></pre></div>
-<p>Use <strong>Tor</strong> or <strong>Brave</strong> browser for better
-anonymity when downloading.</p>
-</section>
-<div class="right">
-<p><img role="img" aria-label="Downloading Mullvad VPN" src="OpSecAssignment/mullvad.png" alt="Downloading Mullvad VPN"></p>
-</div>
-<section id="step-3-import-mullvads-public-pgp-key" class="left">
-<h2>Step 3: Import Mullvad’s Public PGP Key</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Invoke-WebRequest</span> <span class="op">-</span>Uri <span class="st">&quot;https://mullvad.net/media/mullvad-code-signing.asc&quot;</span> <span class="op">-</span>OutFile <span class="st">&quot;mullvad.asc&quot;</span></span>
+  <h1 id="how-to-set-up-mullvad-vpn-on-windows-11-for-maximum-anonymity-and-privacy">How
+    to Set Up Mullvad VPN on Windows 11 for Maximum Anonymity and
+    Privacy</h1>
+  <h5
+    id="disclaimer-images-will-be-in-spanish-because-my-computer-is-in-spanish-and-im-not-changing-my-language-for-an-assignment">
+    <strong><em>DISCLAIMER:
+        images will be in Spanish because my computer is in Spanish and I’m
+        not
+        changing my language for an assignment</em></strong></h5>
+  <p>This guide will walk you through setting up Mullvad VPN on a Windows
+    11 machine with a very strong emphasis on <strong>maximum anonymity and
+      privacy</strong>. You will verify the VPN software using <strong>PGP
+      signatures</strong>, create an anonymous account, <strong>pay with
+      cryptocurrency</strong>, and configure the app securely.</p>
+  <hr />
+  <style>
+    div.grid {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: 20px;
+  }
+  div.left {
+    grid-column: 1;
+  }
+  div.right {
+    grid-column: 2;
+  }
+  img {
+    width: auto; /* force image to scale with column */
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  }
+  </style>
+  <div class="grid">
+    <section id="step-1-install-gpg-gpg4win" class="left">
+      <h2>Step 1: Install GPG (Gpg4win)</h2>
+      <div class="sourceCode" id="cb1">
+        <pre
+          class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Invoke-WebRequest</span> <span class="op">-</span>Uri <span class="st">&quot;https://files.gpg4win.org/gpg4win-4.2.0.exe&quot;</span> <span class="op">-</span>OutFile <span class="st">&quot;gpg4win.exe&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Start-Process</span> <span class="op">.</span>\gpg4win<span class="op">.</span><span class="fu">exe</span></span></code></pre>
+      </div>
+      <p>During install, ensure <strong>Kleopatra</strong> is selected.</p>
+    </section>
+    <div class="right">
+      <p><img role="img" aria-label="Gpg4win installer screenshot" src="OpSecAssignment/gpginstall.png"
+          alt="Gpg4win installer screenshot"></p>
+    </div>
+    <section id="step-2-download-mullvad-installer-and-signature" class="left">
+      <h2>Step 2: Download Mullvad Installer and Signature</h2>
+      <div class="sourceCode" id="cb2">
+        <pre
+          class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Invoke-WebRequest</span> <span class="op">-</span>Uri <span class="st">&quot;https://mullvad.net/en/download/app/exe/latest&quot;</span> <span class="op">-</span>OutFile <span class="st">&quot;MullvadVPN.exe&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Invoke-WebRequest</span> <span class="op">-</span>Uri <span class="st">&quot;https://mullvad.net/en/download/app/exe/latest/signature&quot;</span> <span class="op">-</span>OutFile <span class="st">&quot;MullvadVPN.exe.sig&quot;</span></span></code></pre>
+      </div>
+      <p>Use <strong>Tor</strong> or <strong>Brave</strong> browser for better
+        anonymity when downloading.</p>
+    </section>
+    <div class="right">
+      <p><img role="img" aria-label="Downloading Mullvad VPN" src="OpSecAssignment/mullvad.png"
+          alt="Downloading Mullvad VPN"></p>
+    </div>
+    <section id="step-3-import-mullvads-public-pgp-key" class="left">
+      <h2>Step 3: Import Mullvad’s Public PGP Key</h2>
+      <div class="sourceCode" id="cb3">
+        <pre
+          class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Invoke-WebRequest</span> <span class="op">-</span>Uri <span class="st">&quot;https://mullvad.net/media/mullvad-code-signing.asc&quot;</span> <span class="op">-</span>OutFile <span class="st">&quot;mullvad.asc&quot;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gpg <span class="op">--</span>import mullvad<span class="op">.</span><span class="fu">asc</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gpg <span class="op">--</span>fingerprint</span></code></pre></div>
-<p>Verify the fingerprint against Mullvad’s official key.</p>
-</section>
-<div class="right">
-<p><img role="img" aria-label="Kleopatra key import" src="OpSecAssignment/mullvadgpg.png" alt="Kleopatra key import"></p>
-</div>
-<section id="step-4-verify-the-installer" class="left">
-<h2>Step 4: Verify the Installer</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gpg <span class="op">--</span>verify MullvadVPN<span class="op">.</span><span class="fu">exe</span><span class="op">.</span><span class="fu">sig</span> MullvadVPN<span class="op">.</span><span class="fu">exe</span></span></code></pre></div>
-<p>Ensure the signature is <strong>valid</strong> and matches Mullvad’s
-key.</p>
-</section>
-<div class="right">
-<p><img role="img" aria-label="PGP verification success" src="OpSecAssignment/signatureconfirmed.png" alt="PGP verification success"></p>
-</div>
-<section id="step-5-create-an-anonymous-mullvad-account" class="left">
-<h2>Step 5: Create an Anonymous Mullvad Account</h2>
-<ol type="1">
-<li>Visit <a href="https://mullvad.net">mullvad.net</a> using Tor.</li>
-<li>Click <strong>Generate Account</strong>.</li>
-<li>Save the <strong>16-digit account number</strong> securely.</li>
-</ol>
-</section>
-<div class="right">
-<p><img role="img" aria-label="Mullvad anonymous account creation" src="OpSecAssignment/mullvad.png" alt="Mullvad anonymous account creation"></p>
-</div>
-<section id="step-6-pay-with-cryptocurrency-monero" class="left">
-<h2>Step 6: Pay with Cryptocurrency (Monero)</h2>
-<ul>
-<li>Buy <strong>Monero (XMR)</strong> anonymously.</li>
-<li>Use <strong>Feather Wallet</strong>: https://featherwallet.org</li>
-<li>Send payment to the address provided by Mullvad.</li>
-<li>Wait for confirmation.</li>
-</ul>
-</section>
-<div class="right">
-<p><img role="img" aria-label="Feather wallet payment screen" src="OpSecAssignment/featherwallet.png" alt="Feather wallet payment screen"></p>
-</div>
-<section id="step-7-install-mullvad-vpn" class="left">
-<h2>Step 7: Install Mullvad VPN</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Start-Process</span> <span class="op">.</span>\MullvadVPN<span class="op">.</span><span class="fu">exe</span></span></code></pre></div>
-<p>Follow the prompts to install.</p>
-</section>
-<div class="right">
-<p><img role="img" aria-label="Mullvad installation wizard" src="OpSecAssignment/mullvadlooks.png" alt="Mullvad installation wizard"></p>
-</div>
-<section id="step-8-configure-mullvad-for-privacy" class="left">
-<h2>Step 8: Configure Mullvad for Privacy</h2>
-<ol type="1">
-<li>Launch Mullvad and enter your account number.</li>
-<li>Enable:
-<ul>
-<li>Auto-connect</li>
-<li>Kill switch</li>
-<li>Block LAN</li>
-<li>Multihop: Sweden → Iceland</li>
-</ul></li>
-</ol>
-</section>
-<div class="right">
-<p><img role="img" aria-label="Mullvad VPN privacy settings" src="OpSecAssignment/mullvadconfigs.png" alt="Mullvad VPN privacy settings"></p>
-</div>
-<section id="step-9-test-for-ip-dns-and-webrtc-leaks" class="left">
-<h2>Step 9: Test for IP, DNS, and WebRTC Leaks</h2>
-<ul>
-<li>Visit:
-<ul>
-<li>https://ipleak.net</li>
-<li>https://browserleaks.com</li>
-</ul></li>
-<li>Confirm:
-<ul>
-<li>IP address is hidden</li>
-<li>DNS is secure</li>
-<li>WebRTC disabled or masked</li>
-</ul></li>
-</ul>
-</section>
-<div class="right">
-<p><img role="img" aria-label="IP leak test results" src="OpSecAssignment/ipleak.png" alt="IP leak test results"></p>
-</div>
-<section id="step-10-maintain-privacy-long-term" class="left">
-<h2>Step 10: Maintain Privacy Long-Term</h2>
-<ul>
-<li>Use LibreWolf or Tor Browser</li>
-<li>Disable JavaScript when possible</li>
-<li>Clear cookies regularly</li>
-<li>Avoid personal logins with anonymous setup</li>
-</ul>
-</section>
-<div class="right">
-<p><img role="img" aria-label="Tor browser in use" src="OpSecAssignment/noscript.png" alt="Tor browser in use"></p>
-</div>
-</div>
-<hr />
-<h2 id="conclusion-anonymity-vs.-privacy">Conclusion: Anonymity
-vs. Privacy</h2>
-<ul>
-<li><strong>Privacy</strong> means protecting your data and keeping your
-activities hidden from outsiders (e.g., ISPs, advertisers).</li>
-<li><strong>Anonymity</strong> means hiding your
-<strong>identity</strong> entirely—so actions can’t be traced back to
-you.</li>
-</ul>
-<p>Using tools like Mullvad with cryptocurrency and PGP verification
-maximizes both when used correctly.</p>
-<p>Stay safe. Stay private. Stay anonymous.</p>
-<h3 id="also-a-note-for-professor-it-was-very-difficult-to-turn-this-code-into-a-word-doc-and-pdf-so-it-may-not-turn-out-as-great-unless-you-use-a-code-editor-to-view-the-output">ALSO
-A NOTE FOR PROFESSOR, IT WAS VERY DIFFICULT TO TURN THIS CODE INTO A
-WORD DOC AND PDF SO IT MAY NOT TURN OUT AS GREAT UNLESS YOU USE A CODE
-EDITOR TO VIEW THE OUTPUT</h3>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gpg <span class="op">--</span>fingerprint</span></code></pre>
+      </div>
+      <p>Verify the fingerprint against Mullvad’s official key.</p>
+    </section>
+    <div class="right">
+      <p><img role="img" aria-label="Kleopatra key import" src="OpSecAssignment/mullvadgpg.png"
+          alt="Kleopatra key import"></p>
+    </div>
+    <section id="step-4-verify-the-installer" class="left">
+      <h2>Step 4: Verify the Installer</h2>
+      <div class="sourceCode" id="cb4">
+        <pre
+          class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gpg <span class="op">--</span>verify MullvadVPN<span class="op">.</span><span class="fu">exe</span><span class="op">.</span><span class="fu">sig</span> MullvadVPN<span class="op">.</span><span class="fu">exe</span></span></code></pre>
+      </div>
+      <p>Ensure the signature is <strong>valid</strong> and matches Mullvad’s
+        key.</p>
+    </section>
+    <div class="right">
+      <p><img role="img" aria-label="PGP verification success" src="OpSecAssignment/signatureconfirmed.png"
+          alt="PGP verification success"></p>
+    </div>
+    <section id="step-5-create-an-anonymous-mullvad-account" class="left">
+      <h2>Step 5: Create an Anonymous Mullvad Account</h2>
+      <ol type="1">
+        <li>Visit <a href="https://mullvad.net">mullvad.net</a> using
+          Tor.</li>
+        <li>Click <strong>Generate Account</strong>.</li>
+        <li>Save the <strong>16-digit account number</strong> securely.</li>
+      </ol>
+    </section>
+    <div class="right">
+      <p><img role="img" aria-label="Mullvad anonymous account creation" src="OpSecAssignment/mullvad.png"
+          alt="Mullvad anonymous account creation"></p>
+    </div>
+    <section id="step-6-pay-with-cryptocurrency-monero" class="left">
+      <h2>Step 6: Pay with Cryptocurrency (Monero)</h2>
+      <ul>
+        <li>Buy <strong>Monero (XMR)</strong> anonymously.</li>
+        <li>Use <strong>Feather Wallet</strong>:
+          https://featherwallet.org</li>
+        <li>Send payment to the address provided by Mullvad.</li>
+        <li>Wait for confirmation.</li>
+      </ul>
+    </section>
+    <div class="right">
+      <p><img role="img" aria-label="Feather wallet payment screen" src="OpSecAssignment/featherwallet.png"
+          alt="Feather wallet payment screen"></p>
+    </div>
+    <section id="step-7-install-mullvad-vpn" class="left">
+      <h2>Step 7: Install Mullvad VPN</h2>
+      <div class="sourceCode" id="cb5">
+        <pre
+          class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Start-Process</span> <span class="op">.</span>\MullvadVPN<span class="op">.</span><span class="fu">exe</span></span></code></pre>
+      </div>
+      <p>Follow the prompts to install.</p>
+    </section>
+    <div class="right">
+      <p><img role="img" aria-label="Mullvad installation wizard" src="OpSecAssignment/mullvadlooks.png"
+          alt="Mullvad installation wizard"></p>
+    </div>
+    <section id="step-8-configure-mullvad-for-privacy" class="left">
+      <h2>Step 8: Configure Mullvad for Privacy</h2>
+      <ol type="1">
+        <li>Launch Mullvad and enter your account number.</li>
+        <li>Enable:
+          <ul>
+            <li>Auto-connect</li>
+            <li>Kill switch</li>
+            <li>Block LAN</li>
+            <li>Multihop: Sweden → Iceland</li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+    <div class="right">
+      <p><img role="img" aria-label="Mullvad VPN privacy settings" src="OpSecAssignment/mullvadconfigs.png"
+          alt="Mullvad VPN privacy settings"></p>
+    </div>
+    <section id="step-9-test-for-ip-dns-and-webrtc-leaks" class="left">
+      <h2>Step 9: Test for IP, DNS, and WebRTC Leaks</h2>
+      <ul>
+        <li>Visit:
+          <ul>
+            <li>https://ipleak.net</li>
+            <li>https://browserleaks.com</li>
+          </ul>
+        </li>
+        <li>Confirm:
+          <ul>
+            <li>IP address is hidden</li>
+            <li>DNS is secure</li>
+            <li>WebRTC disabled or masked</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <div class="right">
+      <p><img role="img" aria-label="IP leak test results" src="OpSecAssignment/ipleak.png" alt="IP leak test results">
+      </p>
+    </div>
+    <section id="step-10-maintain-privacy-long-term" class="left">
+      <h2>Step 10: Maintain Privacy Long-Term</h2>
+      <ul>
+        <li>Use LibreWolf or Tor Browser</li>
+        <li>Disable JavaScript when possible</li>
+        <li>Clear cookies regularly</li>
+        <li>Avoid personal logins with anonymous setup</li>
+      </ul>
+    </section>
+    <div class="right">
+      <p><img role="img" aria-label="Tor browser in use" src="OpSecAssignment/noscript.png" alt="Tor browser in use">
+      </p>
+    </div>
+  </div>
+  <hr />
+  <h2 id="conclusion-anonymity-vs.-privacy">Conclusion: Anonymity
+    vs. Privacy</h2>
+  <ul>
+    <li><strong>Privacy</strong> means protecting your data and keeping your
+      activities hidden from outsiders (e.g., ISPs, advertisers).</li>
+    <li><strong>Anonymity</strong> means hiding your
+      <strong>identity</strong> entirely—so actions can’t be traced back to
+      you.
+    </li>
+  </ul>
+  <p>Using tools like Mullvad with cryptocurrency and PGP verification
+    maximizes both when used correctly.</p>
+  <p>Stay safe. Stay private. Stay anonymous.</p>
+  <h3
+    id="also-a-note-for-professor-it-was-very-difficult-to-turn-this-code-into-a-word-doc-and-pdf-so-it-may-not-turn-out-as-great-unless-you-use-a-code-editor-to-view-the-output">
+    ALSO
+    A NOTE FOR PROFESSOR, IT WAS VERY DIFFICULT TO TURN THIS CODE INTO A
+    WORD DOC AND PDF SO IT MAY NOT TURN OUT AS GREAT UNLESS YOU USE A CODE
+    EDITOR TO VIEW THE OUTPUT</h3>
 </body>
+
 </html>
